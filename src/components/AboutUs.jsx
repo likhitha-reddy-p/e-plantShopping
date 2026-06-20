@@ -1,28 +1,18 @@
 function AboutUs() {
   return (
-    <div className="container">
-      <h1>Paradise Nursery</h1>
+    <div className="about-us-container">
+      <h1>About Paradise Nursery</h1>
 
       <p>
-        Welcome to Paradise Nursery, your trusted destination for beautiful
-        indoor and outdoor plants.
+        Paradise Nursery is dedicated to bringing nature closer to your home
+        through a wide variety of beautiful indoor plants.
       </p>
-
-      <h2>Our Mission</h2>
 
       <p>
-        Our mission is to provide healthy plants and excellent customer service
-        while encouraging greener living.
+        Our mission is to provide high-quality plants, gardening guidance,
+        and exceptional customer service to help customers create healthier
+        and greener living spaces.
       </p>
-
-      <h2>Why Choose Us?</h2>
-
-      <ul>
-        <li>Healthy and quality plants</li>
-        <li>Affordable prices</li>
-        <li>Excellent customer support</li>
-        <li>Wide variety of plants</li>
-      </ul>
     </div>
   );
 }
