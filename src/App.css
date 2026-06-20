@@ -1,79 +1,89 @@
 body {
-margin: 0;
-font-family: Arial, sans-serif;
-background-image: url("https://images.unsplash.com/photo-1466692476868-aef1dfb1e735");
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-min-height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
+.background-image {
+  background-image: url("https://images.unsplash.com/photo-1466692476868-aef1dfb1e735");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+/* Landing page styles */
 .landing {
-text-align: center;
-padding-top: 150px;
-color: white;
+  text-align: center;
+  padding-top: 150px;
+  color: white;
 }
 
 .landing h1 {
-font-size: 3rem;
+  font-size: 3rem;
 }
 
 .landing p {
-font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
+/* Layout */
 .container {
-padding: 20px;
+  padding: 20px;
 }
 
+/* Navbar */
 .navbar {
-display: flex;
-justify-content: space-around;
-background: #2e7d32;
-padding: 15px;
+  display: flex;
+  justify-content: space-around;
+  background: #2e7d32;
+  padding: 15px;
 }
 
 .navbar a {
-color: white;
-text-decoration: none;
-font-weight: bold;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
+/* Product grid */
 .grid {
-display: flex;
-flex-wrap: wrap;
-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
+/* Product card */
 .card {
-background: white;
-border-radius: 10px;
-padding: 15px;
-width: 220px;
-text-align: center;
-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  width: 220px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* Buttons */
 button {
-padding: 8px 12px;
-border: none;
-background: #43a047;
-color: white;
-border-radius: 5px;
-cursor: pointer;
+  padding: 8px 12px;
+  border: none;
+  background: #43a047;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 button:hover {
-background: #2e7d32;
+  background: #2e7d32;
 }
 
 button:disabled {
-background: gray;
-cursor: not-allowed;
+  background: gray;
+  cursor: not-allowed;
 }
 
+/* Cart */
 .cart {
-background: white;
-padding: 20px;
-border-radius: 10px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
 }
