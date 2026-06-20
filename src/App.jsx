@@ -6,16 +6,16 @@ import "./App.css";
 
 function LandingPage() {
   return (
-    <div className="landing">
-      <h1>🌱 Paradise Nursery</h1>
+    <div className="background-image">
+      <div className="landing">
+        <h1>🌱 Paradise Nursery</h1>
 
-      <p>
-        Bringing nature into your home with beautiful plants.
-      </p>
+        <p>Bringing nature into your home with beautiful plants.</p>
 
-      <Link to="/plants">
-        <button>Get Started</button>
-      </Link>
+        <Link to="/plants">
+          <button>Get Started</button>
+        </Link>
+      </div>
     </div>
   );
 }
