@@ -1,26 +1,35 @@
-import { useSelector } from "react-redux";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import ProductList from "./components/ProductList";
 import CartItem from "./components/CartItem";
+import AboutUs from "./components/AboutUs";
 import "./App.css";
 
-function App() {
-  const items = useSelector(state => state.cart.items);
-  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
-
+function LandingPage() {
   return (
-    <div>
+    <div className="landing">
+      <h1>🌱 Paradise Nursery</h1>
 
-      <div className="navbar">
-        <div>🌱 Paradise Nursery</div>
-        <div>🛒 Cart: {totalItems}</div>
-      </div>
+      <p>
+        Bringing nature into your home with beautiful plants.
+      </p>
 
-      <div className="container">
-        <ProductList />
-        <CartItem />
-      </div>
-
+      <Link to="/plants">
+        <button>Get Started</button>
+      </Link>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/plants" element={<ProductList />} />
+        <Route path="/cart" element={<CartItem />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
