@@ -2,61 +2,88 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   removeFromCart,
   increaseQty,
-  decreaseQty,
-  clearCart
+  decreaseQty
 } from "../redux/CartSlice";
 
+import { Link } from "react-router-dom";
+
 function CartItem() {
-  const items = useSelector(state => state.cart.items);
+  const items = useSelector(
+    state => state.cart.items
+  );
+
   const dispatch = useDispatch();
 
   const total = items.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    (acc, item) =>
+      acc + item.price * item.quantity,
     0
   );
 
-  const handleCheckout = () => {
-    if (items.length === 0) {
-      alert("Cart is empty!");
-      return;
-    }
-
-    alert(`Order placed successfully! 🌱 Total: $${total}`);
-    dispatch(clearCart());
-  };
-
   return (
-    <div className="cart">
-      <h2>Cart</h2>
+    <div className="container">
+      <h1>Shopping Cart</h1>
 
       {items.map(item => (
-        <div key={item.id}>
-          <h4>{item.name}</h4>
+        <div className="card" key={item.id}>
+          <img
+            src={item.image}
+            alt={item.name}
+            width="120"
+          />
+
+          <h3>{item.name}</h3>
+
+          <p>Unit Price: ${item.price}</p>
 
           <p>
-            ${item.price} × {item.quantity} = ${item.price * item.quantity}
+            Total:
+            ${item.price * item.quantity}
           </p>
 
-          <button onClick={() => dispatch(increaseQty(item.id))}>+</button>
-          <button onClick={() => dispatch(decreaseQty(item.id))}>-</button>
+          <button
+            onClick={() =>
+              dispatch(increaseQty(item.id))
+            }
+          >
+            +
+          </button>
 
-          <button onClick={() => dispatch(removeFromCart(item.id))}>
+          <button
+            onClick={() =>
+              dispatch(decreaseQty(item.id))
+            }
+          >
+            -
+          </button>
+
+          <button
+            onClick={() =>
+              dispatch(removeFromCart(item.id))
+            }
+          >
             Delete
           </button>
         </div>
       ))}
 
-      <h3>Total Cart Value: ${total}</h3>
+      <h2>Total Cart Amount: ${total}</h2>
 
-      <button onClick={handleCheckout}>
+      <button
+        onClick={() =>
+          alert("Coming Soon")
+        }
+      >
         Checkout
       </button>
 
       <br /><br />
 
-      <button onClick={() => window.scrollTo(0, 0)}>
-        Continue Shopping
-      </button>
+      <Link to="/plants">
+        <button>
+          Continue Shopping
+        </button>
+      </Link>
     </div>
   );
 }
