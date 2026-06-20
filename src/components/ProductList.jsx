@@ -1,51 +1,117 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/CartSlice";
+import { Link } from "react-router-dom";
 
 const plants = [
-  { id: 1, name: "Aloe Vera", price: 10, category: "Succulent" },
-  { id: 2, name: "Snake Plant", price: 15, category: "Indoor" },
-  { id: 3, name: "Peace Lily", price: 20, category: "Flowering" },
-  { id: 4, name: "Spider Plant", price: 12, category: "Indoor" },
-  { id: 5, name: "Cactus", price: 8, category: "Succulent" },
-  { id: 6, name: "Orchid", price: 25, category: "Flowering" }
+  {
+    id: 1,
+    name: "Aloe Vera",
+    price: 10,
+    category: "Succulent",
+    image: "https://via.placeholder.com/150"
+  },
+  {
+    id: 2,
+    name: "Snake Plant",
+    price: 15,
+    category: "Indoor",
+    image: "https://via.placeholder.com/150"
+  },
+  {
+    id: 3,
+    name: "Peace Lily",
+    price: 20,
+    category: "Flowering",
+    image: "https://via.placeholder.com/150"
+  },
+  {
+    id: 4,
+    name: "Spider Plant",
+    price: 12,
+    category: "Indoor",
+    image: "https://via.placeholder.com/150"
+  },
+  {
+    id: 5,
+    name: "Cactus",
+    price: 8,
+    category: "Succulent",
+    image: "https://via.placeholder.com/150"
+  },
+  {
+    id: 6,
+    name: "Orchid",
+    price: 25,
+    category: "Flowering",
+    image: "https://via.placeholder.com/150"
+  }
 ];
 
 function ProductList() {
   const dispatch = useDispatch();
-  const cartItems = useSelector(state => state.cart.items);
 
-  const isInCart = (id) => {
-    return cartItems.some(item => item.id === id);
-  };
+  const cartItems = useSelector(
+    state => state.cart.items
+  );
 
-  const categories = ["Indoor", "Succulent", "Flowering"];
+  const count = cartItems.reduce(
+    (acc, item) => acc + item.quantity,
+    0
+  );
+
+  const categories = [
+    "Indoor",
+    "Succulent",
+    "Flowering"
+  ];
 
   return (
-    <div>
-      <h2>Plants</h2>
+    <>
+      <div className="navbar">
+        <Link to="/">Home</Link>
+        <Link to="/plants">Plants</Link>
+        <Link to="/cart">Cart ({count})</Link>
+      </div>
 
       {categories.map(cat => (
         <div key={cat}>
-          <h3>{cat}</h3>
+          <h2>{cat}</h2>
 
-          {plants
-            .filter(p => p.category === cat)
-            .map(p => (
-              <div key={p.id}>
-                <h4>{p.name}</h4>
-                <p>Price: ${p.price}</p>
+          <div className="grid">
+            {plants
+              .filter(p => p.category === cat)
+              .map(p => (
+                <div className="card" key={p.id}>
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    width="150"
+                  />
 
-                <button
-                  onClick={() => dispatch(addToCart(p))}
-                  disabled={isInCart(p.id)}
-                >
-                  {isInCart(p.id) ? "Added" : "Add to Cart"}
-                </button>
-              </div>
-            ))}
+                  <h3>{p.name}</h3>
+
+                  <p>${p.price}</p>
+
+                  <button
+                    disabled={cartItems.some(
+                      item => item.id === p.id
+                    )}
+                    onClick={() =>
+                      dispatch(addToCart(p))
+                    }
+                  >
+                    {cartItems.some(
+                      item => item.id === p.id
+                    )
+                      ? "Added"
+                      : "Add to Cart"}
+                  </button>
+                </div>
+              ))}
+          </div>
         </div>
       ))}
-    </div>
+    </>
   );
 }
 
